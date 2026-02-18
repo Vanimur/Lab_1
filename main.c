@@ -11,8 +11,11 @@ int main()
 //    char w1[7] = "kommar"; // The words W1 and W2 have different lengths. They can't be anagrams.
 //    char w2[7] = "korma";
 
-    char w1[7] = ""; // The words W1 and W2 have different lengths. They can't be anagrams.
-    char w2[7] = "";
+//    char w1[7] = ""; // No words.
+//    char w2[7] = "";
+
+    char w1[7] = "komar"; // Yes.
+    char w2[7] = "komar";
 
     int Len_w1 = 0;
     int Len_w2 = 0;
