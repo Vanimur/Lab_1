@@ -2,8 +2,17 @@
 
 int main()
 {
-    char w1[7] = "komjr";
-    char w2[7] = "korma";
+//    char w1[7] = "komar"; // Yes.
+//    char w2[7] = "korma";
+
+//    char w1[7] = "kaban"; // Yes.
+//    char w2[7] = "banka";
+
+//    char w1[7] = "kommar"; // The words W1 and W2 have different lengths. They can't be anagrams.
+//    char w2[7] = "korma";
+
+    char w1[7] = "komar"; // The words W1 and W2 have different lengths. They can't be anagrams.
+    char w2[7] = "kormma";
 
     int Len_w1 = 0;
     int Len_w2 = 0;
