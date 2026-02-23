@@ -13,8 +13,7 @@ int main()
         Tab[(unsigned char)*ptr_s2++] = 1;
     }
 
-    char new_s1[11] = "";
-    char *ptr_write = new_s1;
+    char *ptr_write = s1;
     for (char *ptr_read = s1; *ptr_read != '\0'; ptr_read++){
       if (Tab[(unsigned char) *ptr_read] == 0){
         *ptr_write = *ptr_read;
@@ -22,6 +21,6 @@ int main()
       }
     }
     *ptr_write = '\0';
-    printf("%s", new_s1);
+    printf("%s", s1);
     return 0;
 }
