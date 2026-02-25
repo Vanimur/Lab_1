@@ -5,9 +5,9 @@ int main()
 {
     char str[35] = "add,door,dad,data,added.";
 
-    char word[100];
-    int wordLen = 0;
-    int dCount = 0;
+    int out_index[100] = {-1};
+    int index_Count = 0;
+    int d_Count = 0;
 
     for (int i = 0; str[i] != '\0'; i++) {
       char letter = str[i];
@@ -19,20 +19,21 @@ int main()
       }
 
       if (letter != ',' && letter != '.') {
-        word[wordLen++] = letter;
         if (letter == 'd') {
-          dCount++;
+          d_Count++;
         }
       }
       else {
-        word[wordLen] = '\0';
 
-        if (dCount == 2) {
-          printf("%s\n", word);
+        if (d_Count == 2) {
+          out_index[index_Count] = i;
+          index_Count++;
         }
-
-        wordLen = 0;
-        dCount = 0;
+        d_Count = 0;
       }
+    }
+
+    for (int i = 0; i < 100; i++){
+      printf("%d\n", out_index[i]);
     }
 }
