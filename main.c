@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int main()
 {
@@ -10,6 +11,12 @@ int main()
 
     for (int i = 0; str[i] != '\0'; i++) {
       char letter = str[i];
+      bool is_letter = (letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z');
+      bool is_limiter = (letter == ',' || letter == '.');
+
+      if (!is_letter && !is_limiter) {
+          return 0;
+      }
 
       if (letter != ',' && letter != '.') {
         word[wordLen++] = letter;
