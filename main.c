@@ -53,10 +53,14 @@ int main()
 //    char w1[7] = ""; // No words.
 //    char w2[7] = "";
 
+//    char w1[7] = "komar"; // No.
+//    char w2[7] = "kolar";
+
+
     char w1[7] = "komar"; // Yes.
     char w2[7] = "komar";
 
-    if (Check_anagram(w1, w2) == true) printf("Yes.\n");
+    if (Check_anagram(w1, w2)) printf("Yes.\n");
     else printf("No.\n");
     return 0;
 }
