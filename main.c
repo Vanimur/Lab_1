@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 void Compact_String(char *s1, char *s2){
+    if (s1 == NULL || s2 == NULL) return;
+
     int Tab[256] = {0};
     char *ptr_s2 = NULL;
     ptr_s2 = s2;
