@@ -23,8 +23,36 @@ void Compact_String(char *s1, char *s2){
 
 int main()
 {
-    char s1[15] = "Helloh People!";
-    char s2[7] = "ople";
+    char s1[20] = "Helloh People!";
+    char s2[10] = "ople";
+
+    //char s1[20] = "abcdef"; // abcdef
+    //char s2[10] = "";
+
+    //char s1[20] = "";
+    //char s2[10] = "abc";
+
+    //char s1[20] = "aaaa";
+    //char s2[10] = "a";
+
+    //char s1[20] = "abc"; // abc
+    //char s2[10] = "xyz";
+
+    //char s1[20] = "AaBb"; //ABb
+    //char s2[10] = "a";
+
+    //char s1[20] = "a b c"; // abc
+    //char s2[10] = " ";
+
+    //char s1[20] = "abcdef"; // def
+    //char s2[10] = "aabbcc";
+
+    //char s1[20] = "Hello!"; // Hello
+    //char s2[10] = "!";
+
+    // Compact_String(NULL, "abc");
+    // Compact_String("abc", NULL);
+
     Compact_String(s1, s2);
     printf("%s", s1);
 
