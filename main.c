@@ -16,7 +16,7 @@ int Find_words_with_two_d(char *str, int *out_index){
       bool is_end = (letter == '\0');
 
       if (!is_letter && !is_limiter && !is_end) {
-        return 0;
+        return -1;
       }
 
       if (is_letter) {
@@ -60,6 +60,22 @@ void Print_words_by_indices(char *str, int *out_index, int count){
 
 int main()
 {
+    //char str[35] = ""; // 0
+    //char str[35] = ",,....,,";
+    //char str[35] = "apple,banana,orange";
+    //char str[35] = "dog,cat,doll";
+    //char str[35] = "daddy,mom";
+    //char str[35] = "DaD,dog"; // DaD
+    //char str[35] = "add,,dad";
+    //char str[35] = ".add.";
+    //char str[35] = "add,123,dad"; // Found invalid characters.
+    //char str[35] = "dada"; // dada
+    //char str[35] = "dddd,add"; // add
+    //char str[35] = "add, dad"; // Found invalid characters.
+    //char str[35] = "add,dad,ded"; // add dad ded
+    //char str[35] = "Dd,dd,Dd"; // Dd dd Dd
+    //char str[35] = "Dd,dd,Dd."; // Dd dd Dd
+
     char str[35] = "add,door,dad,data,added.";
 
     int out_index[100];
@@ -69,7 +85,7 @@ int main()
 
     int found_count = Find_words_with_two_d(str, out_index);
 
-    if (found_count) {
+    if (found_count >= 0) {
       Print_words_by_indices(str, out_index, found_count);
     }
     else {
