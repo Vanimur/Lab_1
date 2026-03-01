@@ -2,14 +2,11 @@
 #include <string.h>
 #include <stdbool.h>
 
-void Fill_associative_table(int *Tab, char *str, size_t size){
-    for (size_t i = 0; i < size; i++){
-        unsigned char letter = str[i];
-        Tab[letter]++;
-    }
-}
-
 bool Check_anagram(char *w1, char *w2){
+    if (w1 == NULL || w2 == NULL){
+        return false;
+    }
+
     size_t Len_w1 = strlen(w1);
     size_t Len_w2 = strlen(w2);
 
@@ -23,15 +20,16 @@ bool Check_anagram(char *w1, char *w2){
         return false;
     }
 
-    int Tab_w1[256] = {0};
-    Fill_associative_table(Tab_w1, w1, Len_w1);
+    int Tab[256] = {0};
 
-    int Tab_w2[256] = {0};
-    Fill_associative_table(Tab_w2, w2, Len_w2);
+    for (size_t i = 0; i < Len_w1; i++) {
+        Tab[(unsigned char) w1[i]]++;
+        Tab[(unsigned char) w2[i]]--;
+    }
 
     bool flag = true;
     for (int j = 0; (j < 256) && (flag == true); j++){
-        if (Tab_w1[j] != Tab_w2[j]){
+        if (Tab[j] != 0){
             flag = false;
         }
     }
