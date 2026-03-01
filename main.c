@@ -1,10 +1,6 @@
 #include <stdio.h>
 
-int main()
-{
-    char s1[15] = "Helloh People!";
-    char s2[7] = "ople";
-
+void Compact_String(char *s1, char *s2){
     int Tab[256] = {0};
     char *ptr_s2 = NULL;
     ptr_s2 = s2;
@@ -21,6 +17,14 @@ int main()
       }
     }
     *ptr_write = '\0';
+}
+
+int main()
+{
+    char s1[15] = "Helloh People!";
+    char s2[7] = "ople";
+    Compact_String(s1, s2);
     printf("%s", s1);
+
     return 0;
 }
