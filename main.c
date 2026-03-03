@@ -92,6 +92,7 @@ int main()
     char str[35] = "add,door,dad,data,added."; // add dad
     //char str[35] = "dad ,  ded.    "; // dad ded
     //char str[35] = "dad  proba, add. f "; // Invalid input.
+    //xchar str[35] = " dad, проба ddd"; // Invalid input.
 
     int out_index[100];
     for (int i = 0; i < 100; i++) {
@@ -105,6 +106,6 @@ int main()
       Print_words_by_indices(str, out_index, found_count);
     }
     else {
-      printf("Invalid input.\n");
+      printf("Invalid input. Error code: (%d)\n", found_count);
     }
 }
