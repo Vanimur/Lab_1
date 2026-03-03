@@ -45,8 +45,8 @@ int main()
 //    char w1[7] = "kaban"; // Yes.
 //    char w2[7] = "banka";
 
-    char w1[7] = "komar"; // Yes.
-    char w2[7] = "komar";
+//    char w1[7] = "komar"; // Yes.
+//    char w2[7] = "komar";
 
 //    char w1[7] = "kommar"; // The words W1 and W2 have different lengths. They can't be anagrams.
 //    char w2[7] = "korma";
@@ -60,6 +60,9 @@ int main()
 
 //    char w1[9] = "фафф"; // Yes.
 //    char w2[9] = "аффф";
+
+      char w1[6] = "veseло";
+      char w2[6] = "олvese";
 
     if (Check_anagram(w1, w2)) printf("Yes.\n");
     else printf("No.\n");
