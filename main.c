@@ -8,7 +8,8 @@ void Compact_String(char *s1, char *s2){
     ptr_s2 = s2;
 
     while (*ptr_s2) {
-        Tab[(unsigned char) *ptr_s2++] = 1;
+        Tab[(unsigned char) *ptr_s2] = 1;
+        ptr_s2++;
     }
 
     char *ptr_write = s1;
