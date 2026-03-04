@@ -6,15 +6,15 @@ int Find_words_with_two_d(char *str, int *out_index){
     int index_Count = 0;
     int d_Count = 0;
     int word_start = 0;
-    int in_word = 0;
-    int end_str = 0;
+    bool in_word = 0;
+    bool end_str = 0;
     if (str == NULL){
       return -2;
     }
 
     size_t len = strlen(str);
 
-    for (size_t i = 0; i <= len; i++) {
+    for (size_t i = 0; i <= len && !end_str; i++) {
       char letter = str[i];
       bool is_letter = (letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z');
       bool is_limiter = (letter == ',' || letter == '.' || letter == ' ');
@@ -22,10 +22,6 @@ int Find_words_with_two_d(char *str, int *out_index){
 
       if (!is_letter && !is_limiter && !is_end) {
         return -1;
-      }
-
-      if (is_letter && end_str){
-        return -3;
       }
 
       if (is_letter) {
@@ -59,13 +55,13 @@ int Find_words_with_two_d(char *str, int *out_index){
 void Print_words_by_indices(char *str, int *out_index, int count){
     for (int i = 0; i < count; i++) {
       int start = out_index[i];
-      for (int j = start; str[j] != '\0'; j++) {
+      bool end_str = 0;
+      for (int j = start; str[j] != '\0' && !end_str; j++) {
         char letter = str[j];
         if ((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z')) {
           printf("%c", letter);
-        } else {
-          break;
         }
+        else end_str = 1;
       }
       printf("\n");
     }
@@ -73,7 +69,7 @@ void Print_words_by_indices(char *str, int *out_index, int count){
 
 int main()
 {
-    //char str[35] = ""; // 0
+    //char str[35] = ""; //
     //char str[35] = ",,....,,";
     //char str[35] = "apple,banana,orange";
     //char str[35] = "dog,cat,doll";
@@ -91,8 +87,9 @@ int main()
 
     char str[35] = "add,door,dad,data,added."; // add dad
     //char str[35] = "dad ,  ded.    "; // dad ded
-    //char str[35] = "dad  proba, add. f "; // Invalid input.
-    //xchar str[35] = " dad, проба ddd"; // Invalid input.
+    //char str[35] = "dad  proba, add. f "; // dad ded
+    //char str[35] = "dad  proba, add. ddd "; // dad ded
+    //char str[35] = " dad, проба ddd"; // Invalid input.
 
     int out_index[100];
     for (int i = 0; i < 100; i++) {
