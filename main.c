@@ -17,6 +17,7 @@ void Compact_String(char *s1, char *s2){
         *ptr_write = *ptr_read;
         ptr_write++;
       }
+      else printf("%d %c\n",(unsigned char)*ptr_read, (unsigned char)*ptr_read);
     }
     *ptr_write = '\0';
 }
@@ -52,6 +53,21 @@ int main()
 
     // Compact_String(NULL, "abc");
     // Compact_String("abc", NULL);
+
+    //char s1[20] = "привет";
+    //char s2[10] = "п";
+
+    //char s1[20] = "привет";
+    //char s2[10] = "privet";
+
+    //char s1[20] = "привет";
+    //char s2[10] = "";
+
+    //char s1[20] = "privet"; // privet
+    //char s2[20] = "привет";
+
+    //char s1[20] = "как dela";
+    //char s2[10] = "de";
 
     Compact_String(s1, s2);
     printf("%s", s1);
