@@ -3,12 +3,12 @@
 #include <string.h>
 
 int Find_first_word(char *str, int *word_len){
-    if (str == NULL || word_len == NULL) return -1;
+    if (str == NULL || word_len == NULL) return -2;
     size_t len = strlen(str);
 
     bool end_str = 0;
     bool in_word = 0;
-    int word_start = -3;
+    int word_start = -1;
     *word_len = 0;
 
     for (size_t i = 0; i <= len && !end_str; i++){
@@ -18,9 +18,8 @@ int Find_first_word(char *str, int *word_len){
       bool is_end = (letter == '\0');
 
       if (!is_letter && !is_limiter && !is_end) {
-        return -2;
+        return -3;
       }
-
       if (is_letter) {
         if (!in_word) {
             in_word = 1;
@@ -75,7 +74,7 @@ int main()
     //char str[35] = "apple,banana,orange";
     //char str[35] = "dog,cat,doll";
     //char str[35] = "daddy,mom";
-    //har str[35] = "DaD,dog"; // DaD
+    //char str[35] = "DaD,dog"; // DaD
     //char str[35] = "add,,dad";
     //char str[35] = ".add."; // Invalid input.
     //char str[35] = "add,123,dad"; // Invalid input.
@@ -90,7 +89,7 @@ int main()
     //char str[35] = "dad ,  ded.    "; // dad ded
     //char str[35] = "dad  proba, add. f "; // dad ded
     //char str[35] = "dad  proba, add. ddd "; // dad ded
-    //har str[35] = " dad, проба ddd"; // Invalid input.
+    //char str[35] = " dad, проба ddd"; // Invalid input.
 
     int word_len;
     int offset = 0;
@@ -106,7 +105,10 @@ int main()
       offset += (word_start + word_len);
       word_start = Find_first_word(str + offset, &word_len);
     }
+    if (word_start < -1){
+      printf("Invalid input. Error code: %d", word_start);
+    }
+    else Print_words(str, out_index, len_out_index);
 
-    Print_words(str, out_index, len_out_index);
     return 0;
 }
