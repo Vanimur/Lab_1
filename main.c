@@ -54,6 +54,20 @@ bool Check_two_d(char *str, int start_word, int word_len){
     return (count_d == 2);
 }
 
+void Print_words(char *str, int *out_index, int len_out_index) {
+    if (len_out_index == 0) {
+        printf("No words.\n");
+        return;
+    }
+
+    for (int i = 0; i < len_out_index; i += 2) {
+        int start = out_index[i];
+        int length = out_index[i + 1];
+
+        printf("%.*s\n", length, str + start);
+    }
+}
+
 int main()
 {
     //char str[35] = ""; //
@@ -61,7 +75,7 @@ int main()
     //char str[35] = "apple,banana,orange";
     //char str[35] = "dog,cat,doll";
     //char str[35] = "daddy,mom";
-    //char str[35] = "DaD,dog"; // DaD
+    //har str[35] = "DaD,dog"; // DaD
     //char str[35] = "add,,dad";
     //char str[35] = ".add."; // Invalid input.
     //char str[35] = "add,123,dad"; // Invalid input.
@@ -76,7 +90,7 @@ int main()
     //char str[35] = "dad ,  ded.    "; // dad ded
     //char str[35] = "dad  proba, add. f "; // dad ded
     //char str[35] = "dad  proba, add. ddd "; // dad ded
-    //char str[35] = " dad, проба ddd"; // Invalid input.
+    //har str[35] = " dad, проба ddd"; // Invalid input.
 
     int word_len;
     int offset = 0;
@@ -92,5 +106,7 @@ int main()
       offset += (word_start + word_len);
       word_start = Find_first_word(str + offset, &word_len);
     }
-    printf("start = %d, len = %d\n", word_start, word_len);
+
+    Print_words(str, out_index, len_out_index);
+    return 0;
 }
