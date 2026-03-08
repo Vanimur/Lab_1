@@ -2,69 +2,56 @@
 #include <stdbool.h>
 #include <string.h>
 
-int Find_words_with_two_d(char *str, int *out_index){
-    int index_Count = 0;
-    int d_Count = 0;
-    int word_start = 0;
-    bool in_word = 0;
-    bool end_str = 0;
-    if (str == NULL){
-      return -2;
-    }
-
+int Find_first_word(char *str, int *word_len){
+    if (str == NULL || word_len == NULL) return -1;
     size_t len = strlen(str);
 
-    for (size_t i = 0; i <= len && !end_str; i++) {
+    bool end_str = 0;
+    bool in_word = 0;
+    int word_start = -3;
+    *word_len = 0;
+
+    for (size_t i = 0; i <= len && !end_str; i++){
       char letter = str[i];
       bool is_letter = (letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z');
       bool is_limiter = (letter == ',' || letter == '.' || letter == ' ');
       bool is_end = (letter == '\0');
 
       if (!is_letter && !is_limiter && !is_end) {
-        return -1;
+        return -2;
       }
 
       if (is_letter) {
-
         if (!in_word) {
             in_word = 1;
             word_start = i;
         }
-
-        if (letter == 'd' || letter == 'D') {
-          d_Count++;
-        }
+        *word_len = *word_len + 1;
       }
       else {
-
-        if (d_Count == 2) {
-          out_index[index_Count] = word_start;
-          index_Count++;
+        if (in_word){
+          end_str = 1;
         }
-        d_Count = 0;
         in_word = 0;
-
         if (letter == '.'){
           end_str = 1;
         }
       }
     }
-    return index_Count;
+    return word_start;
 }
 
-void Print_words_by_indices(char *str, int *out_index, int count){
-    for (int i = 0; i < count; i++) {
-      int start = out_index[i];
-      bool end_str = 0;
-      for (int j = start; str[j] != '\0' && !end_str; j++) {
-        char letter = str[j];
-        if ((letter >= 'a' && letter <= 'z') || (letter >= 'A' && letter <= 'Z')) {
-          printf("%c", letter);
-        }
-        else end_str = 1;
+bool Check_two_d(char *str, int start_word, int word_len){
+    if (str == NULL || start_word < 0 || word_len <= 0) return false;
+    int count_d = 0;
+    for (int i = start_word; i < start_word + word_len; i++){
+      char letter = str[i];
+      if (letter == 'd' || letter == 'D'){
+        count_d++;
       }
-      printf("\n");
+      if (count_d > 2) return false;
     }
+    return (count_d == 2);
 }
 
 int main()
@@ -91,18 +78,19 @@ int main()
     //char str[35] = "dad  proba, add. ddd "; // dad ded
     //char str[35] = " dad, проба ddd"; // Invalid input.
 
-    int out_index[100];
-    for (int i = 0; i < 100; i++) {
-      out_index[i] = -1;
-    }
+    int word_len;
+    int offset = 0;
+    int word_start = Find_first_word(str, &word_len);
 
-    int found_count = Find_words_with_two_d(str, out_index);
-    //printf("%d\n", found_count);
-
-    if (found_count >= 0) {
-      Print_words_by_indices(str, out_index, found_count);
+    int out_index[100] = {0};
+    int len_out_index = 0;
+    while (word_start >= 0){
+      if (Check_two_d(str, offset + word_start, word_len)){
+        out_index[len_out_index++] = offset + word_start;
+        out_index[len_out_index++] = word_len;
+      };
+      offset += (word_start + word_len);
+      word_start = Find_first_word(str + offset, &word_len);
     }
-    else {
-      printf("Invalid input. Error code: (%d)\n", found_count);
-    }
+    printf("start = %d, len = %d\n", word_start, word_len);
 }
