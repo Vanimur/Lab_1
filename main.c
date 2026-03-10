@@ -54,6 +54,7 @@ bool Check_two_d(char *str, int start_word, int word_len){
 }
 
 void Print_words(char *str, int *out_index, int len_out_index) {
+    if (str == NULL || out_index == NULL) return;
     if (len_out_index == 0) {
         printf("No words.\n");
         return;
@@ -69,14 +70,14 @@ void Print_words(char *str, int *out_index, int len_out_index) {
 
 int main()
 {
-    //char str[35] = ""; //
+    //char str[35] = "";
     //char str[35] = ",,....,,";
     //char str[35] = "apple,banana,orange";
     //char str[35] = "dog,cat,doll";
     //char str[35] = "daddy,mom";
     //char str[35] = "DaD,dog"; // DaD
-    //char str[35] = "add,,dad";
-    //char str[35] = ".add."; // Invalid input.
+    //char str[35] = "add,,dad"; //add dad
+    //char str[35] = ".add."; // No words.
     //char str[35] = "add,123,dad"; // Invalid input.
     //char str[35] = "dada"; // dada
     //char str[35] = "dddd,add"; // add
@@ -86,15 +87,20 @@ int main()
     //char str[35] = "Dd,dd,Dd."; // Dd dd Dd
 
     char str[35] = "add,door,dad,data,added."; // add dad
-    //char str[35] = "dad ,  ded.    "; // dad ded
+    //char str[35] = "     dad ,  ded.    "; // dad ded
     //char str[35] = "dad  proba, add. f "; // dad ded
     //char str[35] = "dad  proba, add. ddd "; // dad ded
     //char str[35] = " dad, проба ddd"; // Invalid input.
+    //char str[7] = ",,addh"; // addh
 
     int word_len;
     int offset = 0;
-    int word_start = Find_first_word(str, &word_len);
+    //int word_start = Find_first_word(NULL, &word_len);
+    //int word_start = Find_first_word(str, NULL);
 
+    //char *ptr;
+    //int word_start = Find_first_word(ptr, &word_len);
+    int word_start = Find_first_word(str, &word_len);
     int out_index[100] = {0};
     int len_out_index = 0;
     while (word_start >= 0){
